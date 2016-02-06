@@ -1,21 +1,13 @@
-<html>
- <head>
-            <title>Anna's blog</title>
-        </head>
-        <body>
-        <h1><p><em><strong>Dear</strong></em></p></h1>
-    <h2><p><em><strong>Anna</strong></em></p></h2>
-
-    <div>
-    <p>C'est magnifique!</p>
-    <p>It works!</p> 
-    <p>Follow the link: <a href="http://djangogirls.org">link</a></p>
-</div>
-{% for post in posts %}
-<div>
-<p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaks }}</p> </div>
-             {% endfor %}
-</body>
-</html>
+ {% extends 'blog/base.html' %}
+ {% block content %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                        <p>{{ post.text|linebreaks }}</p>
+                    </div>
+                {% endfor %}
+                 {% endblock content %}
+           
